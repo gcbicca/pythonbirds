@@ -9,6 +9,13 @@ class Pessoas:
     def cumprimentar(self):  # MÉTODO
         return f'Olá {id(self)}'
 
+    @staticmethod
+    def metodo_estatico():  # Metodo de CLASSE
+        return 42
+
+    @classmethod  # Quando eu quero accessar dados da propria classe
+    def nome_e_atributos_de_classe(cls):
+        return f'{cls} - olhos {cls.olhos}'
 
 if __name__ == '__main__':
     renzo = Pessoas(nome='Renzo')  # OBJETO
@@ -30,3 +37,5 @@ if __name__ == '__main__':
     print(luciano.olhos)
     print(luciano.idade)
     print(id(Pessoas.olhos), id(luciano.olhos), id(renzo.olhos))
+    print(Pessoas.metodo_estatico(), luciano.metodo_estatico())
+    print(Pessoas.nome_e_atributos_de_classe(), luciano.nome_e_atributos_de_classe())
