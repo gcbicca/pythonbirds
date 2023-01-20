@@ -123,9 +123,9 @@ class FaseTestes(TestCase):
 
     def teste_calcular_pontos(self):
         fase_exemplo = criar_fase_exemplo()
-        expected = set([Ponto(3, 3, 'A'), Ponto(3, 3, 'A'), Ponto(31, 10, 'O'), Ponto(78, 1, '@'),
+        expected1 = set([Ponto(3, 3, 'A'), Ponto(3, 3, 'A'), Ponto(31, 10, 'O'), Ponto(78, 1, '@'),
                         Ponto(70, 1, '@'), Ponto(3, 3, 'V')])
-        self.assertSetEqual(expected, set(fase_exemplo.calcular_pontos(0)))
+        self.assertSetEqual(expected1, set(fase_exemplo.calcular_pontos(0)))
 
         fase_exemplo.lancar(45, 1)
 
@@ -141,10 +141,10 @@ class FaseTestes(TestCase):
 
         fase_exemplo.lancar(23, 4)
 
-        expected = set([Ponto(32, 11, 'v'), Ponto(17, 25, 'A'), Ponto(3, 3, 'A'), Ponto(31, 10, ' '), Ponto(78, 1, '@'),
+        expected2 = set([Ponto(32, 11, 'v'), Ponto(17, 25, 'A'), Ponto(3, 3, 'A'), Ponto(31, 10, ' '), Ponto(78, 1, '@'),
                         Ponto(70, 1, '@')])
 
-        self.assertSetEqual(expected, set(fase_exemplo.calcular_pontos(4)))
+        self.assertSetEqual(expected2, set(fase_exemplo.calcular_pontos(4)))
 
         # i variando de 4 até 6.9
         for i in range(400, 700, 1):

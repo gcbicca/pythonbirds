@@ -29,12 +29,9 @@ O       L
     >>> motor.acelerar()
     >>> motor.velocidade
     2
-    >>> motor.acelerar()
-    >>> motor.velocidade
-    3
     >>> motor.frear()
     >>> motor.velocidade
-    1
+    0
     >>> # Testando Direção
     >>> direcao = Direcao()
     >>> direcao.valor
@@ -81,12 +78,42 @@ O       L
     >>> carro.calcular_direcao()
     'Leste'
     >>> carro.girar_a_esquerda()
-    >>> carro_calcular_direcao()
+    >>> carro.calcular_direcao()
     'Norte'
     >>> carro.girar_a_esquerda()
-    >>> carro_calcular_direcao()
+    >>> carro.calcular_direcao()
     'Oeste'
 """
+
+"""Leva dois parametros que sao os dois objetos da composicao, cria-se o __init__ de acorodo
+precisa de um metodo que retorne a velocidade. A classe Carro vai delegar o trabalho para a classe
+motor para calcular a velocidade(composicao), acessa o motor.velocidade"""
+
+
+class Carro:
+
+    def __init__(self, direcao, motor):
+        self.motor = motor
+        self.direcao = direcao
+
+    def calcular_velocidade(self):
+        return self.motor.velocidade
+
+    def acelerar(self):
+        """Vai delegar o calculo para a classe motor."""
+        return self.motor.acelerar()
+
+    def frear(self):
+        return self.motor.frear()
+
+    def calcular_direcao(self):
+        return self.direcao.valor
+
+    def girar_a_direita(self):
+        return self.direcao.girar_a_direita()
+
+    def girar_a_esquerda(self):
+        return self.direcao.girar_a_esquerda()
 
 
 class Motor:
@@ -126,13 +153,10 @@ class Direcao:
     def __init__(self):
         self.valor = NORTE
 
-    def calcular_direcao(self):
-        pass
-
     def girar_a_direita(self):
         """valor vai receber o valor da chave {NORTE} que é {LESTE}
         na proxima vez que a funcao ser chamada a chave {LESTE} passara o valor {SUL}"""
-        self.valor=self.rotacao_a_direita_dct[self.valor]
+        self.valor = self.rotacao_a_direita_dct[self.valor]
         # if self.valor == NORTE:
         #     self.valor = LESTE
         # elif self.valor == LESTE:
